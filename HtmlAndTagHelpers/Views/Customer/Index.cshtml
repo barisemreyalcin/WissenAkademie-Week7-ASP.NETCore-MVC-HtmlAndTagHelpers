@@ -1,0 +1,61 @@
+﻿@model IEnumerable<HtmlAndTagHelpers.Models.Customer>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+	<a asp-action="Create" class="btn-outline-primary">Create New</a>
+</p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.CustomerId)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.CompanyName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.ContactTitle)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.ContactName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Address)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@* @Html.DisplayFor(modelItem => item.CustomerId) *@
+					@Html.ActionLink(item.CustomerId, "CustomerDetail", "Customer", new { id = item.CustomerId }, new { @class = "text-info" })
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.CompanyName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.ContactTitle)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.ContactName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Address)
+				</td>
+				<td>
+					@Html.ActionLink("Edit", "CustomerEdit", "Customer", new { id = item.CustomerId }, new { @class = "btn btn-outline-primary" }) |
+					@Html.ActionLink("Details", "CustomerDetail", "Customer", new { id = item.CustomerId }, new { @class = "btn btn-outline-primary" }) |
+					@Html.ActionLink("Delete", "CustomerDelete", "Customer", new { id = item.CustomerId }, new { @class = "btn btn-outline-danger" })
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

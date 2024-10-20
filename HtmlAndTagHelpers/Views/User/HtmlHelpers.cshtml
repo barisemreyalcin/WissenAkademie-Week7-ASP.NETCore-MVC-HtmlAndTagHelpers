@@ -1,0 +1,132 @@
+﻿@model User // Tek bir user bekliyor. Bu özellik controller'dan view'a bind edeceğim modeli etkin kılar
+@{
+	ViewData["Title"] = "HtmlHelpers"; /* Hangi sayfada olduğumu söylüyorum. */
+	// Keyword(burada Title) aynı olmalı
+}
+
+<div class="row justify-content-center" style="margin-top: 50px;">
+	<div class="col-sm-8">
+		<div class="card">
+			<div class="card-header">
+				<h3>HTML Helper Page</h3>
+				<div class="card-body">
+					<!-- html controllerde datayı da göreceğim bir yapı -->
+					<!-- datayı controllere bind edeceğim -->
+					<!-- model olarak view'a gönderdiğim dataya burada ulaşabiliyorum -->
+					<!-- MODEL BINDING-->
+					@using(Html.BeginForm("HtmlHelpers", "User", FormMethod.Post))
+					{
+						<div class="form-group">
+							<!-- <> lambda exp kullanabilirsin demek -->
+							<!-- label'ların etiketleri class property'lerden aldı -->
+							@Html.LabelFor(user => user.FirstName, new { @class = "mb-2 mt-2" })
+							@Html.TextBoxFor(user => user.FirstName, new { @class = "mb-2 mt-2 form-control" })
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(user => user.LastName, new { @class = "mb-2 mt-2" })
+							@Html.TextBoxFor(user => user.LastName, new { @class = "mb-2 mt-2 form-control" })
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(user => user.Username, new { @class = "mb-2 mt-2" })
+							@Html.TextBoxFor(user => user.Username, new { @class = "mb-2 mt-2 form-control" })
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(user => user.Password, new { @class = "mb-2 mt-2" })
+							@Html.PasswordFor(user => user.Password, new { @class = "mb-2 mt-2 form-control" })
+						</div>
+
+						<div class="form-group">
+							@Html.LabelFor(user => user.RememberMe, new { @class = "mb-2 mt-2" })
+							@Html.CheckBoxFor(user => user.RememberMe, new { @class = "mb-2 mt-2" })
+						</div>
+
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary btn-block">Login</button>
+						</div>
+
+						<div class="form-group">
+							@Html.ActionLink("Forgot my password", "ForgotPassword", "User", null, new { @class = "mt-2 mb-2" });
+						</div>
+					}
+
+					
+					@* FORM DESIGN WITH HTML HELPER CLASS *@
+					@* action, controller, enumeration form method *@
+					@* @using (Html.BeginForm("HtmlHelpers", "User", FormMethod.Post))
+					{
+						<div class="form-group">
+							@Html.Hidden("FirstName", "Kane")
+							@Html.Hidden("FirstName", "Doe")
+						</div>
+
+						<div class="form-group">
+							@Html.Label("Username", "Username: ")
+							@Html.TextBox("Username", null, new { @class = "form-control pt-2 mt-2 mb-2" }) <!-- Value mevcut değil -->
+						</div>
+
+						<div class="form-group">
+							@Html.Label("Password", "Password: ")
+							@Html.Password("Password", null, new { @class = "form-control pt-2 mt-2 mb-2" }) <!-- Value mevcut değil -->
+						</div>
+
+						<div class="form-group">
+							@Html.Label("Password", "Password: ")
+							@Html.Password("Password", null, new { @class = "form-control pt-2 mt-2 mb-2" }) <!-- Value mevcut değil -->
+						</div>
+
+						<div class="form-group">
+							@Html.Label("RememberMe", "Remember me: ")
+							@Html.CheckBox("RememberMe", null, new { @class = "pt-2 mt-2 mb-2" }) <!-- Value mevcut değil -->
+						</div>
+
+						<div class="form-group">
+							<!-- Html.Button yok -->
+							<button type="submit" class="btn btn-primary btn-block">Login</button>
+						</div>
+
+						<div class="form-group">
+							@Html.ActionLink("Forgot my password", "ForgotPassword", "User", null, new { @class = "pt-2 mt-2 mb-2" });
+						</div>
+					} *@
+					 
+
+					@* HTML INPUT ELEMENTS *@
+					<!--
+						<form asp-action="HtmlHelpers" asp-controller="User" method="post">
+					@* Hidden type'lar UI'da görünmez. Data taşımak için kullanılan bir yöntem *@
+						<input type="hidden" name="FirstName" value="Kane" />
+						<input type="hidden" name="LastName" value="Doe" />
+					@* FirsName ve LastName için sabit değerler atamış oldum*@
+						<div class="form-group">
+							<label for="Username">Username: </label>
+							<input type="text" class="form-control" name="Username" />
+						</div>
+
+						<div class="form-group">
+							<label for="Password">Password: </label>
+							<input type="password" class="form-control" name="Password" />
+						</div>
+					@* name'lere class'taki property isimleri veriyorum *@
+
+						<div class="form-group">
+							<label for="RememberMe">Remember me: </label>
+							<input type="checkbox" name="RememberMe" />
+						</div>
+
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary btn-block" >Login</button>
+						</div>
+
+						<div class="form-group">
+							<a href="/User/ForgotPassword">Forgot my password</a>
+						</div>
+					</form>
+					-->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

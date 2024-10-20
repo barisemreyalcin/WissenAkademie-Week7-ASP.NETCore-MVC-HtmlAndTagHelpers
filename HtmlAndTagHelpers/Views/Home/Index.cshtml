@@ -1,0 +1,41 @@
+﻿@* Model türüm IEnumerable veya List olabilir. List en altta zaten IEnumerable'dan türüyor *@
+@model IEnumerable<Student>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div class="table-responsive-sm">
+    <table class="table table-bordered" border="1">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Detail</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.StudentID</td>
+                    <td>@student.StudentName</td>
+                    <td>
+                        @* <a href="/Home/StudentDetail/@student.StudentID" class="btn btn-primary">Detail</a> *@
+
+                        @* Diğer yol (html helper) *@
+                        @* @Html.ActionLink("Detail", "StudentDetail", "Home", new { id = student.StudentID }, new {@class = "btn btn-primary" }) *@
+
+                        @* Diğer yol (tag helper) *@
+                        <a asp-controller="Home" asp-action="StudentDetail" asp-route-id="@student.StudentID" class="btn btn-secondary">Detail</a>
+                    </td> @* HomeController'ın Home'u *@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
